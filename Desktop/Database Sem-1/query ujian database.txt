@@ -1,0 +1,101 @@
+create table public.tb_peminjam(
+	id_peminjam bigint primary key,
+	kd_peminjam varchar (4),
+	nm_peminjam varchar (100),
+	no_telpon_peminjam varchar (13)
+);
+
+create table public.tb_buku(
+	id_buku bigint primary key,
+	kd_buku varchar (5),
+	judul_buku varchar (100),
+	penulis varchar (50),
+	penerbit varchar (50),
+	tahun_penerbit varchar (4)
+);
+
+create table public.tb_petugas(
+	id_petugas bigint primary key,
+	nm_petugas varchar (50),
+	jabatan_petugas varchar (50),
+	no_telpon_petugas varchar (13),
+	alamat_petugas varchar (150)
+);
+
+create table public.tb_transaksi_peminjaman(
+	id_transaksi_peminjaman bigint primary key,
+	tgl_pinjam date,
+	tgl_kembali date,
+	id_buku bigint,
+	id_peminjam bigint,
+	id_petugas bigint
+);
+
+create table public.tb_pengembalian(
+	id_pengembalian bigint primary key,
+	tgl_pengembalian date,
+	denda bigint,
+	id_buku bigint,
+	id_peminjam bigint,
+	id_petugas bigint
+);
+
+
+
+
+
+
+
+insert into tb_peminjam
+values
+('01','P001','Andre','+628152780384'),
+('02','P002','Andi','+628155486674'),
+('03','P003','Maya','+628123456789');
+
+insert into tb_buku
+values
+('0001','B001','Kecil - Kecil Punya Karya','Sari Ningsih','Gramedia','2007','100'),
+('0002','B002','Fundamental C++','Robert Ananda','Gramedia','2010','200'),
+('0003','B003','Fundamental CorelDraw','Divya Narendra','Gunung Jati','2019','50'),
+('0004','B004','Fundamental Photoshop','Hendra Nasution','Gunung Jati','2017','150'),
+('0005','B005','Fundamental Javascript','Christiawan','Gramedia','2020','88');
+
+insert into tb_petugas
+values
+('012020','Saepul Bahri','Staff','+628098765432','Jl. Mangga 1 no.105'),
+('022020','Arif Rachman','Staff','+628234565434','Jl. Papandayan 4 no.5'),
+('032020','Ferian Edison','Staff','+628987675456','Jl. Karet Raya no.68');
+
+insert into tb_transaksi_peminjaman
+values
+('01112020','2020-11-02','2020-11-09','0001','03','032020'),
+('02112020','2020-10-03','2020-11-09','0003','03','032020'),
+('03112020','2020-09-04','2020-11-20','0005','02','022020'),
+('04112020','2020-09-04','2020-11-20','0004','02','022020'),
+('05112020','2020-09-07','2020-11-12','0002','01','012020');
+
+insert into tb_pengembalian
+values
+('001','2020-11-09','5000','0001','03','0320202'),
+('002','2020-11-09','5000','0003','03','0320202'),
+('003','2020-11-20','10000','0005','02','0220202'),
+('004','2020-11-20','5000','0004','02','0220202'),
+('005','2020-11-12','0','0002','01','0120202');
+
+
+
+
+
+
+
+
+
+
+
+
+
+select tb_peminjam.nm_peminjam, tb_transaksi_peminjaman.tgl_pinjam, tb_transaksi_peminjaman.tgl_kembali, tb_buku.judul_buku, tb_petugas.nm_petugas
+from tb_peminjam join tb_transaksi_peminjaman
+on tb_peminjam.id_peminjam = tb_transaksi_peminjaman.id_peminjam
+join tb_buku on tb_buku.id_buku = tb_transaksi_peminjaman.id_buku 
+join tb_petugas on tb_petugas.id_petugas = tb_transaksi_peminjaman.id_petugas
