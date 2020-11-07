@@ -1,2 +1,2 @@
-# Latihan-Javscript
-# Hajimete
+# Contoh latihan sebelum UTS
+
