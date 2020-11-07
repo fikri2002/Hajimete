@@ -1,0 +1,2 @@
+# Latihan-Javscript
+# Hajimete
