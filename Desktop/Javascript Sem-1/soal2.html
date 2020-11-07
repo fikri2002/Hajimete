@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<p>Angka 1 = 12</p>
+	<p>Angka 2 = 5</p>
+	<p>Angka 3 = 6</p>
+			<p><button type="button" onclick="kali(12, 5, 6)"> Kali</button>
+				<button type="button" onclick="bagi(12, 5, 6)">Bagi</button></p>
+	<p>Hasil Operasi :</p>
+	<p id="demo1"></p>
+		<hr>
+
+	<script type="text/javascript">
+		function kali(x, y, z) {
+			var a = x * y * z;
+			document.getElementById("demo1").innerHTML = a;
+		}
+
+		function bagi(x, y,z) {
+			var b = x / y / z;
+			document.getElementById("demo1").innerHTML = b;
+		}
+		
+	</script>
+</script>
+</body>
+</html>
